@@ -1,11 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function Contact() {
     return (
       <>
         <Navbar />
-        <h1>Home</h1>
+        <h1>Contact</h1>
         <Footer />
       </>
     );

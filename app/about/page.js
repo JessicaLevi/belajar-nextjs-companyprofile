@@ -1,11 +1,11 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function About() {
     return (
       <>
         <Navbar />
-        <h1>Home</h1>
+        <h1>About</h1>
         <Footer />
       </>
     );
