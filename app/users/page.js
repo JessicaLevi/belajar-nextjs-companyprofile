@@ -5,6 +5,8 @@ import UserCard from "@/components/UserCard";
 
 import { Search } from "lucide-react";
 
+import { Input } from "@/components/ui/input";
+
 export default function UsersPage() {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -56,10 +58,10 @@ export default function UsersPage() {
 
         <div className="relative mb-6">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
-          <input
+          <Input
             type="text"
             placeholder="Search users..."
-            className="w-full rounded-lg border border-gray-300 bg-white py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="bg-white pl-10"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
