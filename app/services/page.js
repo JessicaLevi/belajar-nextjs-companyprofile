@@ -49,7 +49,7 @@ export default function ServicesPage() {
           {services.map(({ icon: Icon, title, description }) => (
             <Card
               key={title}
-              className="group relative overflow-hidden border border-white/10 bg-foreground/[0.03] transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
+              className="group relative overflow-hidden border border-white/10 bg-foreground/3 transition-all hover:-translate-y-1 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
             >
               <CardHeader>
                 <div className="mb-3 flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">

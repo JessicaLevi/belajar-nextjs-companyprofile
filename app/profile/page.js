@@ -20,9 +20,9 @@ export default function Profile() {
       <div className="bg-grid bg-radial-fade absolute inset-0 -z-10" />
 
       <div className="mx-auto max-w-3xl px-6 py-20">
-        <Card className="border border-white/10 bg-foreground/[0.03]">
+        <Card className="border border-white/10 bg-foreground/3">
           <CardContent className="flex flex-col items-center text-center">
-            <div className="flex size-20 items-center justify-center rounded-full bg-gradient-to-br from-primary/40 to-primary/10 text-2xl font-bold">
+            <div className="flex size-20 items-center justify-center rounded-full bg-linear-to-br from-primary/40 to-primary/10 text-2xl font-bold">
               MW
             </div>
 

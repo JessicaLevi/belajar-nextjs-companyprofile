@@ -10,6 +10,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import HeroThemeToggle from '@/components/HeroThemeToggle'
+
 const features = [
   {
     icon: Code2,
@@ -36,15 +38,19 @@ export default function Home() {
     <>
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-grid bg-radial-fade" />
-        <div className="absolute top-1/2 left-1/2 -z-10 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[120px]" />
+        <div className="absolute top-1/2 left-1/2 -z-10 h-105 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/20 blur-[120px]" />
         <div className="animate-blob absolute top-24 left-10 -z-10 h-64 w-64 rounded-full bg-blue-500/20 blur-[100px]" />
         <div className="animate-blob absolute top-40 right-10 -z-10 h-64 w-64 rounded-full bg-purple-500/20 blur-[100px] [animation-delay:4s]" />
 
         <div className="mx-auto max-w-6xl px-6 py-28 md:py-36">
           <div className="animate-fade-up mx-auto max-w-3xl text-center">
-            <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-foreground/5 px-4 py-1.5 text-sm text-muted-foreground">
-              <Sparkles className="size-3.5" />
-              Welcome to MyWebsite
+
+            <div className="mx-auto mb-6 flex flex-wrap items-center justify-center gap-3">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-foreground/5 px-4 py-1.5 text-sm text-muted-foreground">
+                <Sparkles className="size-3.5" />
+                Welcome to MyWebsite
+              </div>
+              <HeroThemeToggle />
             </div>
 
             <h1 className="text-gradient text-4xl font-bold tracking-tight md:text-6xl">
@@ -93,7 +99,8 @@ export default function Home() {
           {features.map(({ icon: Icon, title, description }) => (
             <Card
               key={title}
-              className="group border border-white/10 bg-foreground/[0.03] transition-all hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl hover:shadow-black/20"
+              className="group border border-white/10 bg-foreground/3
+               transition-all hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl hover:shadow-black/20"
             >
               <CardHeader>
                 <div className="mb-3 flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
@@ -110,7 +117,7 @@ export default function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-foreground/[0.03] px-8 py-14 text-center">
+        <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-foreground/3 px-8 py-14 text-center">
           <div className="bg-grid bg-radial-fade absolute inset-0 opacity-60" />
 
           <div className="relative">

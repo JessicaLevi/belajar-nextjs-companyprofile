@@ -21,7 +21,7 @@ const columns = [
 export default function Footer() {
   return (
     <footer className="relative mt-24 border-t border-white/10">
-      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-foreground/30 to-transparent" />
+      <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-foreground/30 to-transparent" />
 
       <div className="mx-auto max-w-6xl px-6 py-12">
         <div className="flex flex-col gap-10 sm:flex-row sm:justify-between">
