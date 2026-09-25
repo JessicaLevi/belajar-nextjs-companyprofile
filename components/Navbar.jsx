@@ -10,6 +10,8 @@ import { useUser } from "@/context/UserContext";
 
 import ThemeToggle from "@/components/ThemeToggle";
 
+import { useFavorites } from "@/context/FavoriteContext";
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
@@ -21,6 +23,7 @@ const links = [
 export default function Navbar() {
   const pathname = usePathname();
   const { name, submitted } = useUser();
+  const { favorites } = useFavorites();
 
   return (
     <header className="sticky top-4 z-50 mx-auto w-full max-w-4xl px-4">
@@ -52,7 +55,7 @@ export default function Navbar() {
           })}
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 text-sm">
           {submitted && <span>Hi, {name} 👋</span>}
 
           <ThemeToggle />
@@ -65,6 +68,10 @@ export default function Navbar() {
             )}
           >
             Get in touch
+          </Link>
+
+          <Link href="/favorites" className="text-sm">
+            Favorite ({favorites.length})
           </Link>
         </div>
       </nav>

@@ -93,7 +93,7 @@ export default function UsersPage() {
           ) : (
             <div className="col-span-full flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
               <SearchX className="size-8" />
-              <p>User tidak ditemukan.</p>
+              <p>Users not found.</p>
             </div>
           )}
         </div>

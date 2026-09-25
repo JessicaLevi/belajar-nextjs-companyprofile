@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 import { UserProvider } from "@/context/UserContext";
+import { FavoriteProvider } from "@/context/FavoriteContext";
 
 const fontSans = localFont({
   src: [
@@ -43,11 +44,13 @@ export default function RootLayout({ children }) {
           enableSystem={false}
         >
           <UserProvider>
-            <Navbar />
+            <FavoriteProvider>
+              <Navbar />
 
-            <main className="flex-1">{children}</main>
+              <main className="flex-1">{children}</main>
 
-            <Footer />
+              <Footer />
+            </FavoriteProvider>
           </UserProvider>
         </ThemeProvider>
       </body>
