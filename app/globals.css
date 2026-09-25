@@ -57,11 +57,11 @@
   --background: oklch(0.985 0.005 160);
   --foreground: oklch(0.145 0.02 160);
   --header-bg: color-mix(in srgb, #04664f 85%, transparent);
-  --header-text: oklch(0.985 0 0);
-  --muted-header-text: oklch(0.55 0.03 160);
-  --header-text-foreground: oklch(0.985 0 0);
-  --header-foreground: oklch(0.985 0 0);
-  --card: oklch(1 0 0);
+  --header-text: oklch(0.97 0.01 160);
+  --muted-header-text: oklch(0.75 0.02 160);
+  --header-text-foreground: oklch(0.97 0.01 160);
+  --header-foreground: oklch(0.20 0.02 160);
+  --card: oklch(21.884% 0.01287 18.077);
   --card-foreground: oklch(0.145 0.02 160);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);

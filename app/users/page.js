@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SearchX } from "lucide-react";
+import { Search, SearchX } from "lucide-react";
 
 import UserCard from "@/components/UserCard";
 import { Input } from "@/components/ui/input";
@@ -13,7 +13,7 @@ export default function UsersPage() {
   const [search, setSearch] = useState("");
 
   const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(search.toLowerCase())
+    user.name.toLowerCase().includes(search.toLowerCase()),
   );
 
   useEffect(() => {
@@ -52,9 +52,7 @@ export default function UsersPage() {
   if (loading) {
     return (
       <main className="flex min-h-[70vh] items-center justify-center px-6">
-        <p className="animate-pulse text-muted-foreground">
-          Loading users...
-        </p>
+        <p className="animate-pulse text-muted-foreground">Loading users...</p>
       </main>
     );
   }
@@ -74,22 +72,20 @@ export default function UsersPage() {
           </p>
         </div>
 
-        <Input
-          type="text"
-          placeholder="Search users..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="mt-10 h-10 max-w-sm rounded-full px-4"
-        />
+        <div className="relative max-w-sm w-full mt-10">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+          <Input
+            type="text"
+            placeholder="Search users..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="h-10 w-full rounded-full pl-11 pr-4"
+          />
+        </div>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredUsers.length > 0 ? (
-            filteredUsers.map((user) => (
-              <UserCard
-                key={user.id}
-                user={user}
-              />
-            ))
+            filteredUsers.map((user) => <UserCard key={user.id} user={user} />)
           ) : (
             <div className="col-span-full flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
               <SearchX className="size-8" />
