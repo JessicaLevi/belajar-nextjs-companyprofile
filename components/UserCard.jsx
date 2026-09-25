@@ -48,11 +48,11 @@ export default function UserCard({ user }) {
           <Button
             onClick={() => toggleFavorite(user)}
             className={`btn-favorite mt-4 rounded-full border transition-colors duration-200
-              ${
-                isFavorite
-                  ? "bg-primary border-primary"
-                  : "bg-transparent border-current hover:bg-primary/10"
-              }`}
+           ${
+             isFavorite
+               ? "bg-primary text-primary-foreground border-primary"
+               : "bg-transparent border-border text-foreground hover:bg-accent hover:text-accent-foreground"
+           }`}
           >
             {isFavorite ? "♥ Remove from Favorite" : "♡ Add to Favorite"}
           </Button>
