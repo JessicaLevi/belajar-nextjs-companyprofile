@@ -7,18 +7,22 @@ export async function GET() {
 export async function POST(request) {
   const body = await request.json();
 
-  if (!body.id || !body.name) {
+  if (!body || Object.keys(body).length === 0) {
     return Response.json(
-      { error: "id dan name wajib diisi" },
-      { status: 400 }
+      { error: "Body permintaan tidak boleh kosong" },
+      { status: 400 },
     );
+  }
+
+  if (!body.id || !body.name) {
+    return Response.json({ error: "id dan name wajib diisi" }, { status: 400 });
   }
 
   const alreadyExists = favorites.some((f) => f.id === body.id);
   if (alreadyExists) {
     return Response.json(
       { error: "User ini sudah difavoritkan" },
-      { status: 400 }
+      { status: 400 },
     );
   }
 

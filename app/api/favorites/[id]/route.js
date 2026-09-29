@@ -1,5 +1,31 @@
 import { favorites } from "@/lib/db";
 
+export async function PATCH(request, { params }) {
+  const { id } = await params;
+  const body = await request.json();
+  const { note } = body;
+
+  const favorite = favorites.find((f) => String(f.id) === String(id));
+
+  if (!favorite) {
+    return Response.json({ error: "Data tidak ditemukan" }, { status: 404 });
+  }
+
+  if (note === undefined || note === null || note.trim() === "") {
+    return Response.json(
+      { error: "Field note tidak boleh kosong" },
+      { status: 400 },
+    );
+  }
+
+  favorite.note = note;
+
+  return Response.json(
+    { message: "Berhasil diperbarui", data: favorite },
+    { status: 200 },
+  );
+}
+
 export async function DELETE(request, { params }) {
   const { id } = await params;
   const index = favorites.findIndex((f) => String(f.id) === String(id));

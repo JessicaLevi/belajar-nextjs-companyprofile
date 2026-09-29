@@ -37,6 +37,23 @@ export const FavoriteProvider = ({ children }) => {
     }
   }
 
+  async function updateFavorite(userId, updatedData) {
+    const res = await fetch(`/api/favorites/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (res.ok) {
+      const updated = await res.json();
+      setFavorites((prev) =>
+        prev.map((fav) => (fav.id === userId ? updated : fav)),
+      );
+    }
+  }
+
   function isFavorite(userId) {
     return favorites.some((fav) => fav.id === userId);
   }
@@ -53,6 +70,7 @@ export const FavoriteProvider = ({ children }) => {
     favorites,
     addFavorite,
     removeFavorite,
+    updateFavorite,
     isFavorite,
     toggleFavorite,
   };
