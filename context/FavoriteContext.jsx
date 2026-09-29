@@ -1,4 +1,5 @@
 "use client";
+
 import { createContext, useContext, useEffect, useState } from "react";
 
 const FavoriteContext = createContext(undefined);
@@ -9,7 +10,14 @@ export const FavoriteProvider = ({ children }) => {
   useEffect(() => {
     fetch("/api/favorites")
       .then((res) => res.json())
-      .then(setFavorites);
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setFavorites(data);
+        } else {
+          setFavorites([]);
+        }
+      })
+      .catch(() => setFavorites([]));
   }, []);
 
   async function addFavorite(user) {
@@ -55,7 +63,7 @@ export const FavoriteProvider = ({ children }) => {
   }
 
   function isFavorite(userId) {
-    return favorites.some((fav) => fav.id === userId);
+    return Array.isArray(favorites) && favorites.some((fav) => fav.id === userId);
   }
 
   const toggleFavorite = (user) => {
@@ -89,3 +97,5 @@ export function useFavorites() {
   }
   return context;
 }
+
+export const useFavorite = useFavorites;
