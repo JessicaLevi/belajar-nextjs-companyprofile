@@ -1,10 +1,11 @@
-import { ThemeProvider } from "@/components/theme-provider";
 import "./globals.css";
 
 import localFont from "next/font/local";
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+import { ThemeProvider } from "@/components/theme-provider";
 
 import { UserProvider } from "@/context/UserContext";
 import { FavoriteProvider } from "@/context/FavoriteContext";
