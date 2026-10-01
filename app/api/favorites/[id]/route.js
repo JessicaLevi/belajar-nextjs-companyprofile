@@ -1,4 +1,18 @@
-import { favorites } from "@/lib/db";
+import { removeFavorite } from "@/lib/services/favoriteService";
+
+export async function DELETE(request, { params }) {
+  const { id } = await params;
+  const numId = Number(id);
+  const result = removeFavorite(numId);
+
+  if (!result.success) {
+    return Response.json({ error: result.error }, { status: result.status });
+  }
+
+  return Response.json({ message: "Berhasil dihapus" });
+}
+
+/* import { favorites } from "@/lib/db";
 
 export async function PATCH(request, { params }) {
   const { id } = await params;
@@ -36,4 +50,4 @@ export async function DELETE(request, { params }) {
 
   favorites.splice(index, 1);
   return Response.json({ message: "Berhasil dihapus" });
-}
+} */
