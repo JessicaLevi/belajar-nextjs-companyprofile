@@ -6,7 +6,8 @@ export function middleware(request) {
   console.log(`[${waktu}] ${request.method} ${request.nextUrl.pathname}`);
 
   // 2. Latihan 3: Maintenance Mode (Contoh pengecekan global)
-  const isMaintenance = false; // Ubah jadi true jika ingin mengaktifkan mode maintenance
+  /* const isMaintenance = false; // Ubah jadi true jika ingin mengaktifkan mode maintenance */
+  const isMaintenance = process.env.MAINTENANCE_MODE === "true"; // Ambil dari env variable
   if (isMaintenance && !request.nextUrl.pathname.startsWith("/maintenance")) {
     return NextResponse.redirect(new URL("/maintenance", request.url));
   }
