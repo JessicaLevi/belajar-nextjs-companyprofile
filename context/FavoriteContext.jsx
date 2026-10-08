@@ -1,32 +1,36 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
+import { useAuth } from "@/context/AuthContext";
 
 const FavoriteContext = createContext(undefined);
 
-export const FavoriteProvider = ({ children }) => {
+export function FavoriteProvider({ children }) {
+  const { isLoggedIn } = useAuth();
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
+    if (!isLoggedIn) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setFavorites([]);
+      return;
+    }
+
     fetch("/api/favorites")
-      .then((res) => res.json())
-      .then((data) => {
-        if (Array.isArray(data)) {
-          setFavorites(data);
-        } else {
-          setFavorites([]);
-        }
-      })
-      .catch(() => setFavorites([]));
-  }, []);
+      .then((res) => (res.ok ? res.json() : []))
+      .then(setFavorites);
+  }, [isLoggedIn]);
 
   async function addFavorite(user) {
+    if (!isLoggedIn) {
+      alert("Silakan login terlebih dahulu untuk menambahkan favorite.");
+      return;
+    }
+
     const res = await fetch("/api/favorites", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(user),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ user_id: user.id }),
     });
 
     if (res.ok) {
@@ -36,66 +40,32 @@ export const FavoriteProvider = ({ children }) => {
   }
 
   async function removeFavorite(userId) {
-    const res = await fetch(`/api/favorites/${userId}`, {
-      method: "DELETE",
-    });
+    const res = await fetch(`/api/favorites/${userId}`, { method: "DELETE" });
 
     if (res.ok) {
-      setFavorites((prev) => prev.filter((fav) => fav.id !== userId));
-    }
-  }
-
-  async function updateFavorite(userId, updatedData) {
-    const res = await fetch(`/api/favorites/${userId}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    });
-
-    if (res.ok) {
-      const updated = await res.json();
-      setFavorites((prev) =>
-        prev.map((fav) => (fav.id === userId ? updated : fav)),
-      );
+      setFavorites((prev) => prev.filter((f) => f.user_id !== userId));
     }
   }
 
   function isFavorite(userId) {
-    return Array.isArray(favorites) && favorites.some((fav) => fav.id === userId);
+    return favorites.some((f) => f.user_id === userId);
   }
 
-  const toggleFavorite = (user) => {
-    if (isFavorite(user.id)) {
-      removeFavorite(user.id);
-    } else {
-      addFavorite(user);
-    }
-  };
-
-  const value = {
-    favorites,
-    addFavorite,
-    removeFavorite,
-    updateFavorite,
-    isFavorite,
-    toggleFavorite,
-  };
+  const value = { favorites, addFavorite, removeFavorite, isFavorite };
 
   return (
     <FavoriteContext.Provider value={value}>
       {children}
     </FavoriteContext.Provider>
   );
-};
+}
 
-export function useFavorites() {
+export function useFavorite() {
   const context = useContext(FavoriteContext);
   if (context === undefined) {
-    throw new Error("useFavorites harus digunakan di dalam <FavoriteProvider>");
+    throw new Error("useFavorite harus dipakai di dalam <FavoriteProvider>");
   }
   return context;
 }
 
-export const useFavorite = useFavorites;
+export const useFavorites = useFavorite;

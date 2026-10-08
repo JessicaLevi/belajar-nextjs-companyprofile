@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 
 import { ThemeProvider } from "@/components/theme-provider";
 
+import { AuthProvider } from "@/context/AuthContext";
 import { UserProvider } from "@/context/UserContext";
 import { FavoriteProvider } from "@/context/FavoriteContext";
 
@@ -44,15 +45,17 @@ export default function RootLayout({ children }) {
           defaultTheme="dark"
           enableSystem={false}
         >
-          <UserProvider>
-            <FavoriteProvider>
-              <Navbar />
+          <AuthProvider>
+            <UserProvider>
+              <FavoriteProvider>
+                <Navbar />
 
-              <main className="flex-1">{children}</main>
+                <main className="flex-1">{children}</main>
 
-              <Footer />
-            </FavoriteProvider>
-          </UserProvider>
+                <Footer />
+              </FavoriteProvider>
+            </UserProvider>
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

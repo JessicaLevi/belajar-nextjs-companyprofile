@@ -1,10 +1,11 @@
 import { connection } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 import { deleteMessageAction } from "./actions";
 
 export default async function MessagesPage() {
   await connection();
 
+  const supabase = await createClient();
   const { data: messages, error } = await supabase
     .from("messages")
     .select("*")

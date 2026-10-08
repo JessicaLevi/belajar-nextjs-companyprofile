@@ -1,12 +1,14 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 
 export async function submitContactForm(formData) {
   const name = formData.get("name");
   const email = formData.get("email");
   const message = formData.get("message");
+
+  const supabase = await createClient();
 
   if (!name || !email || !message) {
     return { success: false, error: "Semua field wajib diisi." };

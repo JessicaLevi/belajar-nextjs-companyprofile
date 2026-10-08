@@ -1,52 +1,55 @@
 "use client";
-import { useFavorites } from "@/context/FavoriteContext";
-import UserCard from "@/components/UserCard";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+
 import Link from "next/link";
-import { SearchX, Users } from "lucide-react";
+import { Heart } from "lucide-react";
+
+import UserCard from "@/components/UserCard";
+import { useFavorite } from "@/context/FavoriteContext";
 
 export default function FavoritesPage() {
-  const { favorites } = useFavorites();
+  const { favorites } = useFavorite();
 
   return (
     <section className="relative">
       <div className="bg-grid bg-radial-fade absolute inset-0 -z-10" />
 
       <div className="mx-auto max-w-6xl px-6 py-20">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold text-primary">Favorites</p>
-            <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
-              My Favorite Users
-            </h1>
-            <p className="mt-4 text-muted-foreground">
-              This data is collected from FavoriteContext.
-            </p>
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold text-primary">Favorite</p>
+          <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
+            My Favorite Users
+          </h1>
+          <p className="mt-4 text-muted-foreground">
+            Data ini diambil langsung dari FavoriteContext.
+          </p>
+        </div>
+
+        {favorites.length > 0 ? (
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {favorites.map((favorite) => (
+              <UserCard
+                key={favorite.id}
+                user={{
+                  id: favorite.app_users?.id,
+                  name: favorite.app_users?.name,
+                  email: favorite.app_users?.email,
+                  company: { name: favorite.app_users?.company_name },
+                }}
+              />
+            ))}
           </div>
-
-          <Link
-            href="/users"
-            className={cn(
-              buttonVariants({ size: "sm" }),
-              "hidden rounded-full sm:inline-flex items-center gap-2 shrink-0",
-            )}
-          >
-            <Users className="h-4 w-4" />
-            See Users Directory
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {favorites.length > 0 ? (
-            favorites.map((user) => <UserCard key={user.id} user={user} />)
-          ) : (
-            <div className="col-span-full flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
-              <SearchX className="size-8" />
-              <p>No favorite users.</p>
-            </div>
-          )}
-        </div>
+        ) : (
+          <div className="mt-16 flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
+            <Heart className="size-8" />
+            <p>Belum ada user favorit. Tandai dulu dari User Directory.</p>
+            <Link
+              href="/users"
+              className="text-sm font-medium text-primary hover:underline"
+            >
+              Buka User Directory &rarr;
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );
