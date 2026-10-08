@@ -11,6 +11,8 @@ import { AuthProvider } from "@/context/AuthContext";
 import { UserProvider } from "@/context/UserContext";
 import { FavoriteProvider } from "@/context/FavoriteContext";
 
+import { createClient } from "@/lib/supabase/server";
+
 const fontSans = localFont({
   src: [
     {
@@ -32,7 +34,12 @@ export const metadata = {
     "We help individuals and businesses build modern, simple, and useful digital experiences.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
   return (
     <html
       lang="en"
@@ -45,7 +52,7 @@ export default function RootLayout({ children }) {
           defaultTheme="dark"
           enableSystem={false}
         >
-          <AuthProvider>
+          <AuthProvider user={user}>
             <UserProvider>
               <FavoriteProvider>
                 <Navbar />
