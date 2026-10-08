@@ -1,9 +1,15 @@
+"use client";
+
+import { useState } from "react";
+
 import { login, signup } from "./actions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent } from "@/components/ui/card";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <section className="relative">
       <div className="bg-grid bg-radial-fade absolute inset-0 -z-10" />
@@ -20,7 +26,7 @@ export default function LoginPage() {
         </div>
 
         <Card className="mt-10 border border-white/10 bg-foreground/[0.03]">
-          <CardContent>
+          <CardContent className="pt-6">
             <form className="space-y-4">
               <div className="space-y-1.5">
                 <label htmlFor="name" className="text-sm font-medium">
@@ -50,13 +56,28 @@ export default function LoginPage() {
                 <label htmlFor="password" className="text-sm font-medium">
                   Password
                 </label>
-                <Input
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Minimal 6 karakter"
-                  required
-                />
+                <div className="relative">
+                  <Input
+                    id="password"
+                    name="password"
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Minimal 6 karakter"
+                    required
+                    className="pr-10"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-muted-foreground hover:text-foreground"
+                    aria-label="Toggle password visibility"
+                  >
+                    {showPassword ? (
+                      <Eye className="w-4 h-4" />
+                    ) : (
+                      <EyeOff className="w-4 h-4" />
+                    )}
+                  </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3 pt-2">
