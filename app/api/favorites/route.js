@@ -9,7 +9,11 @@ export async function GET() {
     if (!(await getCurrentUser())) return unauthorized();
     return Response.json(await getAllFavorites());
   } catch (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+    console.error("[favorites] gagal:", error);
+    return Response.json(
+      { error: "Terjadi kesalahan pada server" },
+      { status: 500 },
+    );
   }
 }
 
@@ -26,6 +30,10 @@ export async function POST(request) {
 
     return Response.json(result.data, { status: result.status });
   } catch (error) {
-    return Response.json({ error: error.message }, { status: 500 });
+    console.error("[favorites] gagal:", error);
+    return Response.json(
+      { error: "Terjadi kesalahan pada server" },
+      { status: 500 },
+    );
   }
 }
