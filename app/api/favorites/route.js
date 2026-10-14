@@ -1,7 +1,12 @@
 import { getAllFavorites, addFavorite } from "@/lib/services/favoriteService";
+import { getCurrentUser } from "@/lib/supabase/server";
+
+const unauthorized = () =>
+  Response.json({ error: "Silakan login terlebih dahulu" }, { status: 401 });
 
 export async function GET() {
   try {
+    if (!(await getCurrentUser())) return unauthorized();
     return Response.json(await getAllFavorites());
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
@@ -10,6 +15,8 @@ export async function GET() {
 
 export async function POST(request) {
   try {
+    if (!(await getCurrentUser())) return unauthorized();
+
     const body = await request.json();
     const result = await addFavorite(body);
 

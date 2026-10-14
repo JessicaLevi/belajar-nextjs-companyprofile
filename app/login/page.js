@@ -25,7 +25,7 @@ export default function LoginPage() {
           </p>
         </div>
 
-        <Card className="mt-10 border border-white/10 bg-foreground/[0.03]">
+        <Card className="mt-10 border border-white/10 bg-foreground/3">
           <CardContent className="pt-6">
             <form className="space-y-4">
               <div className="space-y-1.5">
