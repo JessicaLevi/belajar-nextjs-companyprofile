@@ -17,9 +17,12 @@ export async function proxy(request) {
   // 3. Refresh sesi Supabase + auth guard
   const { response, user } = await updateSession(request);
 
-  const protectedPaths = ["/favorites"];
+  const protectedPaths = ["/favorites", "/messages"];
+  const isProtected = protectedPaths.some(
+    (p) => pathname === p || pathname.startsWith(`${p}/`),
+  );
 
-  if (!user && protectedPaths.includes(pathname)) {
+  if (!user && isProtected) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 

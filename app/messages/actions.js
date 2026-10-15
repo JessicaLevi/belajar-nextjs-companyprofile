@@ -3,7 +3,12 @@
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
 
+import { isAdmin } from "@/lib/auth";
+
 export async function deleteMessageAction(formData) {
+  // Server action bisa dipanggil langsung dari luar halaman, jadi dicek lagi di sini
+  if (!(await isAdmin())) return;
+  
   const id = formData.get("id");
 
   if (!id) return;

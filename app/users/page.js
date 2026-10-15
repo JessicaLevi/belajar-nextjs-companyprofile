@@ -17,7 +17,7 @@ export default function UsersPage() {
   );
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
+    fetch("/api/users")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Gagal mengambil data");

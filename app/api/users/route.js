@@ -1,9 +1,13 @@
-const users = [
-  { id: 1, name: "Leanne Graham", email: "leanne@example.com" },
-  { id: 2, name: "Ervin Howell", email: "ervin@example.com" },
-  { id: 3, name: "Clementine Bauch", email: "clementine@example.com" },
-];
+import { findAllUsers } from "@/lib/repositories/userRepository";
 
 export async function GET() {
-  return Response.json(users);
+  try {
+    return Response.json(await findAllUsers());
+  } catch (error) {
+    console.error("[users] gagal:", error);
+    return Response.json(
+      { error: "Terjadi kesalahan pada server" },
+      { status: 500 },
+    );
+  }
 }

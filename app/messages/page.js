@@ -2,8 +2,12 @@ import { connection } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { deleteMessageAction } from "./actions";
 
+import { notFound } from "next/navigation";
+import { isAdmin } from "@/lib/auth";
+
 export default async function MessagesPage() {
   await connection();
+  if (!(await isAdmin())) notFound();
 
   const supabase = await createClient();
   const { data: messages, error } = await supabase
@@ -29,10 +33,17 @@ export default async function MessagesPage() {
           <p className="text-muted-foreground">Belum ada pesan masuk.</p>
         ) : (
           messages.map((msg) => (
-            <div key={msg.id} className="flex items-start justify-between gap-4 rounded-lg border p-4">
+            <div
+              key={msg.id}
+              className="flex items-start justify-between gap-4 rounded-lg border p-4"
+            >
               <div>
-                <p className="font-medium">{msg.name} — {msg.email}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{msg.message}</p>
+                <p className="font-medium">
+                  {msg.name} — {msg.email}
+                </p>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {msg.message}
+                </p>
               </div>
               <form action={deleteMessageAction}>
                 <input type="hidden" name="id" value={msg.id} />

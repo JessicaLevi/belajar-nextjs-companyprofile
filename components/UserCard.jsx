@@ -23,7 +23,7 @@ export default function UserCard({ user }) {
     .toUpperCase();
 
   return (
-    <Card className="relative overflow-hidden group border border-white/10 bg-foreground/[0.03] transition-all hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl hover:shadow-black/20">
+    <Card className="relative overflow-hidden group border border-white/10 bg-foreground/3 transition-all hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl hover:shadow-black/20">
       {favorited && (
         <div
           className="absolute top-3 right-3 z-10 text-primary text-xl font-bold"
@@ -35,7 +35,7 @@ export default function UserCard({ user }) {
 
       <CardHeader>
         <div className="flex items-center gap-3">
-          <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary/40 to-primary/10 text-sm font-semibold">
+          <div className="flex size-10 shrink-0 items-center justify-center rounded-full bg-linear-to-br from-primary/40 to-primary/10 text-sm font-semibold">
             {initials}
           </div>
           <CardTitle>{user.name}</CardTitle>
@@ -46,7 +46,7 @@ export default function UserCard({ user }) {
         <p className="text-sm text-muted-foreground">{user.email}</p>
 
         <p className="mt-1 text-sm text-muted-foreground">
-          {user.company?.name || "-"}
+          {user.company_name || "-"}
         </p>
 
         <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
