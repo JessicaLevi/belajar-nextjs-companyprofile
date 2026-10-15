@@ -12,8 +12,10 @@ import {
 } from "@/components/ui/card";
 
 export default function UserCard({ user }) {
-  const { isFavorite, addFavorite, removeFavorite } = useFavorite();
+  const { isFavorite, isPending, getError, addFavorite, removeFavorite } = useFavorite();
   const favorited = isFavorite(user.id);
+  const pending = isPending(user.id);
+  const errorMessage = getError(user.id);
 
   const initials = user.name
     .split(" ")
@@ -68,9 +70,14 @@ export default function UserCard({ user }) {
             }
           >
             <Heart className={cn("mr-1 size-4", favorited ? "fill-primary text-primary" : "")} />
-            {favorited ? "Remove from Favorite" : "Add to Favorite"}
+            {pending ? "Memproses..." : favorited ? "Remove from Favorite" : "Add to Favorite"}
           </Button>
         </div>
+        {errorMessage && (
+          <p role="alert" className="mt-3 text-sm text-destructive">
+            {errorMessage}
+          </p>
+        )}
       </CardContent>
     </Card>
   );
