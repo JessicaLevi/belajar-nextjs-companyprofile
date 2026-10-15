@@ -58,8 +58,20 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 flex flex-col gap-2 border-t border-white/10 pt-6 text-sm text-[var(--header-text)] sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Jessica Levi - Ratu Zaleha | MyWebsite. All rights reserved.</p>
-          <p>Built with Next.js &amp; Tailwind CSS.</p>
+          <p>
+            © 2026 Jessica Levi - Ratu Zaleha | MyWebsite. All rights reserved.
+          </p>
+          <p>
+            Built with Next.js &amp; Tailwind CSS ·{" "}
+            <a
+              href="https://github.com/JessicaLevi/belajar-nextjs-companyprofile"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-[var(--header-text-foreground)]"
+            >
+              Source on GitHub
+            </a>
+          </p>
         </div>
       </div>
     </footer>

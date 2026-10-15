@@ -21,7 +21,8 @@ export async function submitContactForm(formData) {
   });
 
   if (error) {
-    return { success: false, error: error.message };
+    console.error("[contact] gagal menyimpan pesan:", error);
+    return { success: false, error: "Gagal mengirim pesan. Coba lagi nanti." };
   }
 
   revalidatePath("/messages");

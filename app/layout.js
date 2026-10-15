@@ -29,7 +29,10 @@ const fontSans = localFont({
 });
 
 export const metadata = {
-  title: "MyWebsite — Build something meaningful",
+  title: {
+    default: "MyWebsite — Build something meaningful",
+    template: "%s | MyWebsite",
+  },
   description:
     "We help individuals and businesses build modern, simple, and useful digital experiences.",
 };

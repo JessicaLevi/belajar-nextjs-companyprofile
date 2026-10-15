@@ -10,8 +10,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { submitContactForm } from "./actions";
 
 const contactInfo = [
-  { icon: Mail, label: "Email", value: "hello@mywebsite.com" },
-  { icon: MapPin, label: "Location", value: "Jakarta, Indonesia" },
+  { icon: Mail, label: "Email", value: "disini.jessica@gmail.com" },
+  { icon: MapPin, label: "Location", value: "Bandung, Indonesia" },
   { icon: MessageCircle, label: "Response time", value: "Within 1-2 days" },
 ];
 
@@ -27,18 +27,6 @@ export default function Contact() {
     setSubmitted,
   } = useUser();
 
-  /* function handleSubmit(event) {
-    event.preventDefault();
-
-    console.log({
-      name,
-      email,
-      message,
-    });
-
-    setSubmitted(true);
-  } */
-
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -51,6 +39,9 @@ export default function Contact() {
 
     if (result.success) {
       setSubmitted(true);
+      setName("");
+      setEmail("");
+      setMessage("");
     } else {
       alert(result.error);
     }
@@ -100,6 +91,13 @@ export default function Contact() {
                   <p className="mt-2 text-sm text-muted-foreground">
                     Thanks for reaching out — we&apos;ll reply soon.
                   </p>
+                  <Button
+                    variant="outline"
+                    className="mt-6 rounded-full"
+                    onClick={() => setSubmitted(false)}
+                  >
+                    Send another message
+                  </Button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -152,11 +150,6 @@ export default function Contact() {
                   </Button>
                 </form>
               )}
-              <div className="mt-6 rounded-lg bg-muted p-4">
-                <p>Name: {name}</p>
-                <p>Email: {email}</p>
-                <p>Message: {message}</p>
-              </div>
             </CardContent>
           </Card>
         </div>

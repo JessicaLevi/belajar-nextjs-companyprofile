@@ -1,18 +1,12 @@
-import { Globe, Mail, MessageCircle } from "lucide-react";
+import { Globe, Mail, MessageCircle, Code2 } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 
-const stats = [
-  { value: "20+", label: "Projects" },
-  { value: "5+", label: "Years exp." },
-  { value: "10+", label: "Clients" },
-];
+export const metadata = { title: "Profile" }
 
-const social = [
-  { icon: Mail, label: "Email", href: "mailto:hello@mywebsite.com" },
-  { icon: Globe, label: "Website", href: "/" },
-  { icon: MessageCircle, label: "Contact", href: "/contact" },
-];
+const stats = [{ value: "Next.js", label: "Framework" }, { value: "Supabase", label: "Backend" }, { value: "Tailwind", label: "Styling" }]
+
+const social = [{ icon: Mail, label: "Email", href: "mailto:disini.jessica@gmail.com" }, { icon: Code2, label: "GitHub", href: "https://github.com/JessicaLevi" }, { icon: MessageCircle, label: "Contact", href: "/contact" }]
 
 export default function Profile() {
   return (
@@ -23,19 +17,18 @@ export default function Profile() {
         <Card className="border border-white/10 bg-foreground/3">
           <CardContent className="flex flex-col items-center text-center">
             <div className="flex size-20 items-center justify-center rounded-full bg-linear-to-br from-primary/40 to-primary/10 text-2xl font-bold">
-              MW
+              JL
             </div>
 
             <h1 className="mt-4 text-2xl font-bold tracking-tight">
-              MyWebsite Team
+              Jessica Levi
             </h1>
             <p className="text-sm text-muted-foreground">
-              Web &amp; Product Development
+              Aspiring Web Developer
             </p>
 
             <p className="mt-4 max-w-md text-sm text-muted-foreground">
-              We build modern, simple, and useful digital experiences for
-              individuals and businesses.
+              I build modern, simple, and useful web experiences. This site is my Next.js learning project.
             </p>
 
             <div className="mt-8 grid w-full grid-cols-3 gap-4 border-t border-white/10 pt-6">

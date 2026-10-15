@@ -20,7 +20,7 @@ export default function FavoritesPage() {
             My Favorite Users
           </h1>
           <p className="mt-4 text-muted-foreground">
-            Data ini diambil langsung dari FavoriteContext.
+            Users you&apos;ve saved from the User Directory.
           </p>
         </div>
 

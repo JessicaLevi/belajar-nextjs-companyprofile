@@ -7,6 +7,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+export const metadata = { title: "Services" };
+
 const services = [
   {
     icon: Code2,

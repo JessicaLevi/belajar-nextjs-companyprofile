@@ -1,16 +1,18 @@
 import { CheckCircle2 } from "lucide-react";
 
+export const metadata = { title: "About" };
+
 const values = [
-  "Simple, maintainable solutions over complexity",
-  "Clear communication throughout every project",
-  "Design and engineering that work together",
+  "A layered API: route → service → repository",
+  "Supabase Auth, with per-account data protected by Row Level Security",
+  "Business logic covered by unit tests (Jest)",
 ];
 
 const stats = [
-  { value: "20+", label: "Projects shipped" },
-  { value: "5+", label: "Years building" },
-  { value: "10+", label: "Happy clients" },
-  { value: "3", label: "Core services" },
+  { value: "Next.js 16", label: "App Router" },
+  { value: "Supabase", label: "Auth & Postgres" },
+  { value: "Tailwind 4", label: "Styling" },
+  { value: "Jest", label: "Unit tests" },
 ];
 
 export default function AboutPage() {
@@ -20,14 +22,15 @@ export default function AboutPage() {
 
       <div className="mx-auto grid max-w-6xl gap-16 px-6 py-20 md:grid-cols-2 md:items-center">
         <div>
-          <p className="text-sm font-semibold text-primary">About Us</p>
+          <p className="text-sm font-semibold text-primary">About</p>
           <h1 className="mt-2 text-4xl font-bold tracking-tight md:text-5xl">
-            About Us
+            About this project
           </h1>
 
           <p className="mt-4 max-w-md text-muted-foreground">
-            We are a team passionate about building useful digital products and
-            experiences — focused on clarity, craft, and outcomes that matter.
+            A company-profile website built as a Next.js learning project by
+            Jessica Levi — focused on clean structure, real authentication, and
+            a database-backed feature built end to end during Bootcamp Perempuan Inovasi 2026.
           </p>
 
           <ul className="mt-8 space-y-3">
