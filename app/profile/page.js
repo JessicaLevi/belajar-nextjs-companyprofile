@@ -1,4 +1,4 @@
-import { Globe, Mail, MessageCircle, Code2 } from "lucide-react";
+import { Mail, MessageCircle, Code2 } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 
