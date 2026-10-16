@@ -19,7 +19,7 @@ export default async function MessagesPage() {
     return (
       <section className="mx-auto max-w-3xl px-6 py-20">
         <h1 className="text-3xl font-bold">Inbox</h1>
-        <p className="mt-8 text-red-600">Gagal memuat pesan: {error.message}</p>
+        <p className="mt-8 text-red-600">Failed to load messages: {error.message}</p>
       </section>
     );
   }

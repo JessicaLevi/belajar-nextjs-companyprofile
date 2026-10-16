@@ -61,7 +61,7 @@ export default function LoginPage() {
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
-                    placeholder="Minimal 6 karakter"
+                    placeholder="At least 6 characters"
                     required
                     className="pr-10"
                   />
