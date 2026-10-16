@@ -6,7 +6,7 @@ export async function GET() {
   } catch (error) {
     console.error("[users] gagal:", error);
     return Response.json(
-      { error: "Terjadi kesalahan pada server" },
+      { error: "Something went wrong on the server" },
       { status: 500 },
     );
   }

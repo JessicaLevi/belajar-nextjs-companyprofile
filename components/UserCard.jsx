@@ -70,7 +70,7 @@ export default function UserCard({ user }) {
             }
           >
             <Heart className={cn("mr-1 size-4", favorited ? "fill-primary text-primary" : "")} />
-            {pending ? "Memproses..." : favorited ? "Remove from Favorite" : "Add to Favorite"}
+            {pending ? "Processing..." : favorited ? "Remove from Favorite" : "Add to Favorite"}
           </Button>
         </div>
         {errorMessage && (

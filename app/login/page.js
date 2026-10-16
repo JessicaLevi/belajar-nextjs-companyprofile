@@ -21,7 +21,7 @@ export default function LoginPage() {
             Welcome back
           </h1>
           <p className="mt-4 text-muted-foreground">
-            Login untuk melihat daftar favorite kamu, atau buat akun baru.
+            Log in to see your favorites, or create a new account.
           </p>
         </div>
 
@@ -35,7 +35,7 @@ export default function LoginPage() {
                 <Input
                   id="name"
                   name="name"
-                  placeholder="Nama kamu (untuk Sign Up)"
+                  placeholder="Your name (for Sign Up)"
                 />
               </div>
 

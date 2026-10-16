@@ -2,7 +2,7 @@ import { getAllFavorites, addFavorite } from "@/lib/services/favoriteService";
 import { getCurrentUser } from "@/lib/supabase/server";
 
 const unauthorized = () =>
-  Response.json({ error: "Silakan login terlebih dahulu" }, { status: 401 });
+  Response.json({ error: "Please log in first" }, { status: 401 });
 
 export async function GET() {
   try {
@@ -11,7 +11,7 @@ export async function GET() {
   } catch (error) {
     console.error("[favorites] gagal:", error);
     return Response.json(
-      { error: "Terjadi kesalahan pada server" },
+      { error: "Something went wrong on the server" },
       { status: 500 },
     );
   }
@@ -32,7 +32,7 @@ export async function POST(request) {
   } catch (error) {
     console.error("[favorites] gagal:", error);
     return Response.json(
-      { error: "Terjadi kesalahan pada server" },
+      { error: "Something went wrong on the server" },
       { status: 500 },
     );
   }

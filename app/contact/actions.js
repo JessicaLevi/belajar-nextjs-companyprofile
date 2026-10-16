@@ -11,7 +11,7 @@ export async function submitContactForm(formData) {
   const supabase = await createClient();
 
   if (!name || !email || !message) {
-    return { success: false, error: "Semua field wajib diisi." };
+    return { success: false, error: "All fields are required." };
   }
 
   const { error } = await supabase.from("messages").insert({
@@ -22,7 +22,7 @@ export async function submitContactForm(formData) {
 
   if (error) {
     console.error("[contact] gagal menyimpan pesan:", error);
-    return { success: false, error: "Gagal mengirim pesan. Coba lagi nanti." };
+    return { success: false, error: "Failed to send message. Please try again later." };
   }
 
   revalidatePath("/messages");

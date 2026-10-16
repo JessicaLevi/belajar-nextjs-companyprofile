@@ -6,7 +6,7 @@ export async function DELETE(request, { params }) {
     // 1. Harus login
     if (!(await getCurrentUser())) {
       return Response.json(
-        { error: "Silakan login terlebih dahulu" },
+        { error: "Please log in first" },
         { status: 401 },
       );
     }
@@ -30,7 +30,7 @@ export async function DELETE(request, { params }) {
     // 4. Detail error hanya di log server, klien dapat pesan umum
     console.error("[favorites] DELETE gagal:", error);
     return Response.json(
-      { error: "Terjadi kesalahan pada server" },
+      { error: "Something went wrong on the server" },
       { status: 500 },
     );
   }

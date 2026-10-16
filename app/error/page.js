@@ -5,7 +5,7 @@ export default async function ErrorPage({ searchParams }) {
 
   return (
     <section className="mx-auto max-w-sm px-4 py-24 text-center">
-      <h1 className="text-2xl font-bold">Terjadi kesalahan</h1>
+      <h1 className="text-2xl font-bold">Something went wrong</h1>
       <p className="mt-2 text-muted-foreground">
         {message ?? "Email atau password salah."}
       </p>

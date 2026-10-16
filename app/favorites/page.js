@@ -35,7 +35,7 @@ export default function FavoritesPage() {
         ) : (
           <div className="mt-16 flex flex-col items-center gap-3 py-16 text-center text-muted-foreground">
             <Heart className="size-8" />
-            <p>Belum ada user favorit. Tandai dulu dari User Directory.</p>
+            <p>No favorites yet. Add some from the User Directory.</p>
             <Link
               href="/users"
               className="text-sm font-medium text-primary hover:underline"

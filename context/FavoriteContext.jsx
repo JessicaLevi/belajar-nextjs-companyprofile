@@ -41,10 +41,10 @@ export function FavoriteProvider({ children }) {
         onSuccess(await res.json());
       } else {
         const data = await res.json().catch(() => ({}));
-        setError({ userId, message: data.error || "Gagal memperbarui favorit" });
+        setError({ userId, message: data.error || "Failed to update favorite" });
       }
     } catch {
-      setError({ userId, message: "Tidak dapat terhubung ke server" });
+      setError({ userId, message: "Could not reach the server" });
     } finally {
       inFlight.current.delete(userId);
       setPendingIds((prev) => prev.filter((id) => id !== userId));

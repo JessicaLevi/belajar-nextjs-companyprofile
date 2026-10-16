@@ -18,7 +18,7 @@ export default async function MessagesPage() {
   if (error) {
     return (
       <section className="mx-auto max-w-3xl px-6 py-20">
-        <h1 className="text-3xl font-bold">Pesan Masuk</h1>
+        <h1 className="text-3xl font-bold">Inbox</h1>
         <p className="mt-8 text-red-600">Gagal memuat pesan: {error.message}</p>
       </section>
     );
@@ -26,11 +26,11 @@ export default async function MessagesPage() {
 
   return (
     <section className="mx-auto max-w-3xl px-6 py-20">
-      <h1 className="text-3xl font-bold">Pesan Masuk</h1>
+      <h1 className="text-3xl font-bold">Inbox</h1>
 
       <div className="mt-8 space-y-4">
         {messages.length === 0 ? (
-          <p className="text-muted-foreground">Belum ada pesan masuk.</p>
+          <p className="text-muted-foreground">No messages yet.</p>
         ) : (
           messages.map((msg) => (
             <div
